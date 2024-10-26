@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee and Driver Cab Scheduling</title>
+    <style>
+        body {
+            background-image: url('');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 1;
+            filter: brightness(100%) contrast(100%);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .container {
+            max-width: 400px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .container:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333333;
+        }
+
+        label {
+            font-weight: bold;
+            color: #555555;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="datetime-local"],
+        input[type="time"],
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            font-size: 16px;
+            color: #333333;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #ffffff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        p {
+            text-align: center;
+            margin-top: 15px;
+            color: #555555;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #0056b3;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #projectContainer {
+            text-align: center;
+            position: absolute;
+            top: calc(50% - 3cm);
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #projectName {
+            margin-bottom: 20px;
+            font-size: 36px;
+            color: lightgray;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .link-container {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .link-container a {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+
+        .link-container a:hover {
+            background-color: #0056b3;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<boby>
+<div  id="registerContainerDriver">
+    <h2>Driver Registration</h2>
+    <form action="driver_register.php" method="post">
+        <table border="1" align="center">
+            <tr>
+                <td>
+                    <label>Enter Driver ID</label>
+                </td>
+                <td><input type="text" name="driverId"></td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Enter Name</label>
+                </td>
+                <td><input type="text" name="driverName"></td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Enter Cab Number</label>
+                </td>
+                <td><input type="text" name="cabNumber"></td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Enter Contact Number</label>
+                </td>
+                <td><input type="text" name="contactNumber"></td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Enter Username</label>
+                </td>
+                <td><input type="text" name="driverUsername"></td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Enter Password</label>
+                </td>
+                <td><input type="password" name="driverPassword"></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input type="submit" name="register" value="Register" style="font-size:20px"></td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+</body>
+</html>

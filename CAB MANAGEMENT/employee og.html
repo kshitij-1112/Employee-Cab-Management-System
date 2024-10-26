@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Cab Scheduling</title>
+    <link href="https://cdn.jsdelivr.net/npm/@fullcalendar/core/main.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 400px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="datetime-local"],
+        button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="loginContainer" class="container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <a href="#" id="registerLink">Register here</a></p>
+    </div>
+
+    <div id="registerContainer" class="container hidden">
+        <h2>Register</h2>
+        <form id="registerForm">
+            <input type="text" id="name" placeholder="Name" required>
+            <input type="text" id="employeeId" placeholder="Employee ID" required>
+            <input type="text" id="companyName" placeholder="Company Name" required>
+            <input type="text" id="address" placeholder="Address" required>
+            <input type="text" id="regUsername" placeholder="Username" required>
+            <input type="password" id="regPassword" placeholder="Password" required>
+            <button type="submit">Register</button>
+        </form>
+        <p>Already have an account? <a href="#" id="loginLink">Login here</a></p>
+    </div>
+
+    <div id="calendarContainer" class="container hidden">
+        <h2>Select Pickup Date and Time</h2>
+        <div id="pickupCalendar"></div>
+        <input type="datetime-local" id="pickupDateTime" required>
+        <input type="text" id="pickupLocation" placeholder="Pickup Location (e.g., Office or Address)">
+        <h2>Select Drop-off Time</h2>
+        <input type="datetime-local" id="dropoffDateTime" required>
+        <input type="text" id="dropoffLocation" placeholder="Drop-off Location (e.g., Office or Address)">
+        <button id="scheduleButton">Schedule</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core/main.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginContainer = document.getElementById('loginContainer');
+            const registerContainer = document.getElementById('registerContainer');
+            const calendarContainer = document.getElementById('calendarContainer');
+            const registerLink = document.getElementById('registerLink');
+            const loginLink = document.getElementById('loginLink');
+            const loginForm = document.getElementById('loginForm');
+            const registerForm = document.getElementById('registerForm');
+            const pickupCalendarEl = document.getElementById('pickupCalendar');
+            const pickupDateTimeInput = document.getElementById('pickupDateTime');
+            const dropoffDateTimeInput = document.getElementById('dropoffDateTime');
+
+            // Show register form and hide login form
+            registerLink.addEventListener('click', function(event) {
+                event.preventDefault();
+                loginContainer.classList.add('hidden');
+                registerContainer.classList.remove('hidden');
+            });
+
+            // Show login form and hide register form
+            loginLink.addEventListener('click', function(event) {
+                event.preventDefault();
+                registerContainer.classList.add('hidden');
+                loginContainer.classList.remove('hidden');
+            });
+
+            loginForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                // Mock login authentication (replace with actual authentication logic)
+                const username = document.getElementById('username').value;
+                // Show calendar interface and hide login/register forms
+                calendarContainer.classList.remove('hidden');
+                loginContainer.classList.add('hidden');
+                registerContainer.classList.add('hidden');
+                // Display greeting with the username
+                document.getElementById('greeting').textContent = `Hi, ${username}!`;
+            });
+
+            registerForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                // Mock registration (replace with actual registration logic)
+                const name = document.getElementById('name').value;
+                // Show calendar interface and hide login/register forms
+                calendarContainer.classList.remove('hidden');
+                loginContainer.classList.add('hidden');
+                registerContainer.classList.add('hidden');
+                // Display greeting with the registered name
+                document.getElementById('greeting').textContent = `Hi, ${name}!`;
+            });
+
+            // Initialize pickup calendar
+            const pickupCalendar = new FullCalendar.Calendar(pickupCalendarEl, {
+                initialView: 'dayGridMonth',
+                selectable: true,
+                validRange: {
+                    start: new Date().toISOString().split("T")[0] // Prevent past dates
+                },
+                select: function(info) {
+                    const selectedDate = info.startStr;
+                    // Perform pickup date selection action here
+                    console.log('Selected pickup date:', selectedDate);
+                }
+            });
+            pickupCalendar.render();
+
+            const scheduleButton = document.getElementById('scheduleButton');
+            scheduleButton.addEventListener('click', function() {
+                // Get selected pickup and dropoff dates
+                const pickupDateTime = pickupDateTimeInput.value;
+                const dropoffDateTime = dropoffDateTimeInput.value;
+                // Get selected pickup and dropoff locations
+                const pickupLocation = document.getElementById('pickupLocation').value;
+                const dropoffLocation = document.getElementById('dropoffLocation').value;
+                // Generate a random OTP (replace with actual OTP generation logic)
+                const otp = Math.floor(1000 + Math.random() * 9000);
+                // Perform scheduling action here
+
+                // Hide login/register forms after scheduling
+                loginContainer.classList.add('hidden');
+                registerContainer.classList.add('hidden');
+
+                // Display OTP
+                alert(`Your OTP for the cab schedule is: ${otp}`);
+            });
+        });
+    </script>
+</body>
+</html>
